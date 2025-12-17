@@ -14,6 +14,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+resource "random_id" "server_suffix" {
+  byte_length = 4
+}
+
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -29,6 +33,6 @@ resource "aws_instance" "app_server" {
               EOF
 
   tags = {
-    Name = "Flask-App-Server"
+    Name = "Flask-App-Server-${random_id.server_suffix.hex}"
   }
 }
