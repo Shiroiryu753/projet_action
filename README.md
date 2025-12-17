@@ -8,15 +8,8 @@ Ce projet contient une application Flask simple, une configuration Kubernetes, e
 
 1.  **Compte AWS** : Vous devez avoir un compte AWS actif.
 2.  **Bucket S3 pour le State Terraform** :
-    *   Créez un bucket S3 sur AWS (par exemple, via la console ou CLI) pour stocker l'état de Terraform.
-    *   Le nom du bucket doit être unique mondialement.
-    *   Mettez à jour le fichier `terraform/main.tf` avec le nom de votre bucket :
-        ```hcl
-        backend "s3" {
-          bucket = "votre-nom-de-bucket-unique" # <--- Mettre à jour ici
-          ...
-        }
-        ```
+    *   Le workflow GitHub Actions se charge automatiquement de créer le bucket S3 pour stocker l'état Terraform s'il n'existe pas.
+    *   Le nom du bucket est configuré dans `terraform/main.tf` et le workflow CI (actuellement : `terraform-state-projet-action-shiroiryu753`).
 
 ### Configuration GitHub Actions
 
