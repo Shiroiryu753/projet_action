@@ -31,7 +31,9 @@ Pour que le workflow de déploiement Terraform fonctionne, vous devez ajouter le
 
 ### Accès à l'application
 
-Une fois le déploiement terminé, l'adresse IP publique de l'instance sera affichée dans les logs de l'étape "Terraform Apply" du job `terraform` dans le workflow GitHub Actions. L'application est accessible sur le port 5000.
+Une fois le déploiement terminé, l'adresse IP publique de l'instance sera affichée dans les logs de l'étape "Terraform Apply" du job `terraform` dans le workflow GitHub Actions. L'application est accessible sur le port 80 (HTTP standard).
+
+Exemple : `http://34.201.12.34`
 
 ## Destruction de l'infrastructure
 

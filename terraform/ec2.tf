@@ -34,7 +34,7 @@ resource "aws_instance" "app_server" {
               sudo systemctl enable docker
               
               # Lancer le conteneur avec redémarrage automatique
-              sudo docker run -d --restart always -p 5000:5000 ${var.docker_image}
+              sudo docker run -d --restart always -p 80:5000 ${var.docker_image}
               EOF
 
   tags = {
