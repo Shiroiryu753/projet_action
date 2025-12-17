@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/guii-cyber/gitops-project.git
-    targetRevision: main
+    repoURL: https://github.com/Shiroiryu753/projet_action.git
+    targetRevision: Master
     path: k8s
   destination:
     server: https://kubernetes.default.svc
