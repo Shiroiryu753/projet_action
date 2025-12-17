@@ -3,7 +3,7 @@ name: CI - Build, Push, Update GitOps
 on:
   push:
     branches: [ "main" ]
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build-push-and-update-manifest:
