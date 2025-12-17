@@ -65,17 +65,23 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
+
       - name: Ensure Terraform State Bucket Exists
         run: |
           BUCKET_NAME="terraform-state-projet-action-shiroiryu753"
-          REGION="eu-west-3"
+          REGION="us-east-1"
           if ! aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
             echo "Bucket $BUCKET_NAME does not exist. Creating..."
-            aws s3api create-bucket --bucket "$BUCKET_NAME" --region "$REGION" --create-bucket-configuration LocationConstraint="$REGION"
+            if [ "$REGION" == "us-east-1" ]; then
+              aws s3api create-bucket --bucket "$BUCKET_NAME" --region "$REGION"
+            else
+              aws s3api create-bucket --bucket "$BUCKET_NAME" --region "$REGION" --create-bucket-configuration LocationConstraint="$REGION"
+            fi
             echo "Bucket created."
           else
             echo "Bucket $BUCKET_NAME already exists."
           fi
+
       - name: Terraform Init
         run: terraform init
 

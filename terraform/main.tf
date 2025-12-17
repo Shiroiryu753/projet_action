@@ -10,7 +10,7 @@ terraform {
     # Remplacez par le nom de votre bucket S3 existant
     bucket = "terraform-state-projet-action-shiroiryu753" 
     key    = "projet-action/terraform.tfstate"
-    region = "eu-west-3"
+    region = "us-east-1"
   }
 }
 
