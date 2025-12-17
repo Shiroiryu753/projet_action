@@ -1,10 +1,11 @@
-FROM python:3.10-bookworm
+FROM python:3.12-slim
 
-WORKDIR /
+WORKDIR /app
 
-COPY app.py .
-RUN pip install Flask
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-ENTRYPOINT [ "python", "-m", "flask","run", "--host=0.0.0.0", "--port=5000" ]
+COPY app/ .
 
-
+EXPOSE 5000
+CMD ["python", "app.py"]

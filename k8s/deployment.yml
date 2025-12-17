@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heh-flask
+  labels:
+    app: heh-flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: heh-flask
+  template:
+    metadata:
+      labels:
+        app: heh-flask
+    spec:
+      containers:
+        - name: heh-flask
+          image: assiimm/heh-flask:f6655c558592be8464d27db3e680aa92ce4e7184
+          imagePullPolicy: IfNotPresent
+
+
