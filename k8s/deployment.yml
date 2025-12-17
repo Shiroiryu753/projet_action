@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: heh-flask
-          image: assiimm/heh-flask:f6655c558592be8464d27db3e680aa92ce4e7184
+          image: shiroiryu/heh-flask:68496f490dd719aea880958ed69e3674d4d48cc8
           imagePullPolicy: IfNotPresent
 
 
