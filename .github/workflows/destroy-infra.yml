@@ -48,7 +48,7 @@ jobs:
 
       - name: Delete S3 Bucket
         run: |
-          BUCKET_NAME="terraform-state-projet-action-shiroiryu753"
+          BUCKET_NAME="terraform-state-projet-action-shiroiryu753-v2"
           echo "Deleting bucket $BUCKET_NAME..."
           aws s3 rb s3://$BUCKET_NAME --force
           echo "Bucket deleted."

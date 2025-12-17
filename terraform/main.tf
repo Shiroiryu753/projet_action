@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     # Remplacez par le nom de votre bucket S3 existant
-    bucket = "terraform-state-projet-action-shiroiryu753" 
+    bucket = "terraform-state-projet-action-shiroiryu753-v2" 
     key    = "projet-action/terraform.tfstate"
     region = "us-east-1"
   }
