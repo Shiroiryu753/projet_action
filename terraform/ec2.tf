@@ -25,11 +25,16 @@ resource "aws_instance" "app_server" {
 
   user_data = <<-EOF
               #!/bin/bash
+              # Désactiver UFW pour éviter les blocages firewall locaux
+              sudo ufw disable
+
               sudo apt-get update
               sudo apt-get install -y docker.io
               sudo systemctl start docker
               sudo systemctl enable docker
-              sudo docker run -d -p 5000:5000 ${var.docker_image}
+              
+              # Lancer le conteneur avec redémarrage automatique
+              sudo docker run -d --restart always -p 5000:5000 ${var.docker_image}
               EOF
 
   tags = {
