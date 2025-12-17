@@ -1,5 +1,5 @@
 resource "aws_security_group" "app_sg" {
-  name        = "flask-app-sg"
+  name        = "flask-app-sg-${random_id.server_suffix.hex}"
   description = "Allow HTTP and SSH traffic"
 
   ingress {

@@ -23,12 +23,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push image (tag = commit SHA)
+      - name: Build and push image (tag = commit SHA and latest)
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:latest
           
       - name: Update Kubernetes manifest with new tag
         run: |
