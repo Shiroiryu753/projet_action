@@ -23,14 +23,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push image (tag = commit SHA and latest)
+      - name: Build and push image (tag = commit SHA)
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}
           
       - name: Update Kubernetes manifest with new tag
         run: |
@@ -88,8 +86,8 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: terraform plan -var="docker_image=${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}" -input=false
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/Master' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -var="docker_image=${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}" -auto-approve -input=false
