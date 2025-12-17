@@ -32,3 +32,15 @@ Pour que le workflow de déploiement Terraform fonctionne, vous devez ajouter le
 ### Accès à l'application
 
 Une fois le déploiement terminé, l'adresse IP publique de l'instance sera affichée dans les logs de l'étape "Terraform Apply" du job `terraform` dans le workflow GitHub Actions. L'application est accessible sur le port 5000.
+
+## Destruction de l'infrastructure
+
+Pour détruire l'infrastructure et le bucket S3 de state :
+
+1.  Allez dans l'onglet **Actions** de votre dépôt GitHub.
+2.  Sélectionnez le workflow **Destroy Infrastructure** dans la barre latérale gauche.
+3.  Cliquez sur le bouton **Run workflow**.
+
+Ce workflow va :
+1.  Détruire les ressources AWS créées par Terraform (EC2, Security Group, etc.).
+2.  Une fois la destruction réussie, supprimer le bucket S3 contenant le state Terraform.
