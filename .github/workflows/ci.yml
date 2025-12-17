@@ -2,7 +2,7 @@ name: CI - Build, Push, Update GitOps
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Master" ]
   workflow_dispatch:
 
 jobs:
