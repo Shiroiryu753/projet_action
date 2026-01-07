@@ -84,5 +84,5 @@ jobs:
         run: terraform plan -var="docker_image=${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}" -input=false
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/Master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/Master' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: terraform apply -var="docker_image=${{ secrets.DOCKERHUB_USERNAME }}/heh-flask:${{ github.sha }}" -auto-approve -input=false
